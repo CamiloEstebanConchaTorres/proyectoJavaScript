@@ -1,0 +1,78 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: black;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-gap: 10px;
+    width: 100%;
+    height: 98%;
+    padding: 15px;
+}
+
+.left-section, .right-section {
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 5px;
+    overflow-y: auto;
+}
+
+.album-gallery, .song-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-gap: 10px;
+}
+
+.album-gallery img, .song-list div {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.middle-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filtrar_s{
+    border-radius: 25px ;
+    padding: 15px;
+    width: 80%;
+    background: black;
+    border: 2px solid rgb(163, 109, 7);
+}
+
+
+.left-section{
+    background: linear-gradient(to bottom, rgb(0, 0, 0), orange);
+    border-radius: 20px;
+}
+
+.middle-section{
+    background: linear-gradient(to bottom, orange, black);
+    border-radius: 20px;
+}
+
+.right-section{
+    background: linear-gradient(to bottom, rgb(0, 0, 0), orange);
+    border-radius: 20px;
+}
+
+.grid-container h1{
+    color: white;
+    font-size: 50px;
+}
+
+.left-section h2{
+    font-size: 40px;
+    color:  white;
+}
