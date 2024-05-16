@@ -32,3 +32,6 @@ class myframe extends HTMLElement{
     }
 }
 customElements.define("my-frame",myframe)
+
+
+//////////////////////// ALBUM //////////////////////////////////////////////////
