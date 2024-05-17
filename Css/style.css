@@ -96,3 +96,31 @@ body {
 .song-image {
     cursor: pointer;
   }
+
+
+
+.album-gallery{
+    padding-top: 15%;
+    color: white;
+  }
+
+.album-gallery img{
+    cursor: pointer;
+    width: 85%;
+}
+
+.abulm_father{
+    display: flex;
+    height: 40%;
+    overflow-y: scroll;
+} 
+
+.Sng_father{
+    display: flex;
+    height: 75%;
+    overflow-y: scroll;
+}
+
+.left-section h2{
+    color: rgb(0, 0, 0);
+}

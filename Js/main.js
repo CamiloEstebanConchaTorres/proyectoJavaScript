@@ -92,7 +92,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     lastSearchTime = currentTime;
   }
-
+  async function loadDefaultSongs() {
+    try {
+      const defaultSearch = 'electronica';
+      await searchSpotify(defaultSearch);
+    } catch (error) {
+      console.log(`Error al cargar las canciones predeterminadas: ${error}`);
+    }
+  }
+  loadDefaultSongs();
   searchInput.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
       let search = searchInput.value.trim();
@@ -106,5 +114,87 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
+
 ///////////////////////////////// ALBUMS ////////////////////////////////////////////7
 
+document.addEventListener('DOMContentLoaded', function() {
+  let searchInputAlbum = document.querySelector('.left-section .filtrar_s'); 
+  let albumGallery = document.querySelector('.left-section .album-gallery');
+  let frame = document.querySelector('.Framecenter');
+  let lastSearchTimeAlbum = 0;
+  const searchDelay = 100;
+
+  async function searchAlbums(search) {
+    const currentTime = Date.now();
+    if (currentTime - lastSearchTimeAlbum < searchDelay) {
+      console.log('Espera un momento antes de realizar otra búsqueda.');
+      return;
+    }
+    try {
+      let url = `https://spotify23.p.rapidapi.com/search/?q=${search}&type=albums&offset=0&limit=8&numberOfTopResults=5`;
+      let res = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'X-RapidAPI-Key': '27affe6731msh64d1fa5c477d18dp1f41d5jsn3f8bf97a8340',
+          'X-RapidAPI-Host': 'spotify23.p.rapidapi.com',
+        },
+      });
+      let data = await res.json();
+      console.log(data);
+      if (data && data.albums && data.albums.items) {
+        albumGallery.innerHTML = '';
+        data.albums.items.forEach((album, index) => {
+          console.log(`Processing album ${index}`, album);
+          console.log('Detalles del álbum:', album);
+          if (album && album.data && album.data.name && album.data.artists) {
+            let imageUrl = album.data.coverArt?.sources[0]?.url || '';
+            let albumItem = document.createElement('div');
+            albumItem.classList.add('album-card');
+            albumItem.innerHTML = `
+              <img src="${imageUrl}" alt="${album.data.name}" class="album-image" data-uri="${album.data.uri}" />
+              <h3>${album.data.name}</h3>
+              <p>Artista: ${album.data.artists.items.map((artist) => artist.profile.name).join(', ')}</p>
+            `;
+            albumGallery.appendChild(albumItem);
+            albumItem.querySelector('.album-image').addEventListener('click', async (event) => {
+              const uri = event.target.getAttribute('data-uri');
+              console.log('Álbum seleccionado:', uri);
+              frame.setAttribute('uri', uri);
+            });
+          } else {
+            console.log(`Álbum ${index} no tiene los datos esperados.`);
+          }
+        });
+      } else {
+        console.log('No se encontraron resultados válidos en la respuesta de la API.');
+      }
+    } catch (error) {
+      console.log(`Error: ${error}`);
+    }
+
+    lastSearchTimeAlbum = currentTime;
+  }
+
+  async function loadDefaultAlbums() {
+    try {
+      const defaultSearch = 'David GUetta';
+      await searchAlbums(defaultSearch);
+    } catch (error) {
+      console.log(`Error al cargar los álbumes predeterminados: ${error}`);
+    }
+  }
+
+  loadDefaultAlbums();
+  searchInputAlbum.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+      let search = searchInputAlbum.value.trim();
+      if (search) {
+        searchAlbums(search);
+      } else {
+        albumGallery.innerHTML = '';
+      }
+    }
+  });
+});
+
+////////////////////// YOU LIKE /////////////////////////////////////////////
