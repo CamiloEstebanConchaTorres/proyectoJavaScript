@@ -85,6 +85,11 @@ body {
 }
 
 
-/*  ALBUMS
-*/
+.song-card img{
+    padding-top: 15%;
+    width: 90%;
+}
 
+.song-card{
+    color: white;
+}
