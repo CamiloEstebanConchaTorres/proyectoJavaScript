@@ -81,7 +81,13 @@ body {
 }
 
 .Framecenter{
-    margin-bottom: -40%;
+    margin-bottom: -10%;
+    overflow-y: auto;
+    height: 65%;
+}
+
+.Framecenter::-webkit-scrollbar {
+    display: none;
 }
 
 
@@ -129,3 +135,4 @@ body {
 #YouMayLike-cards img{
     width: 20%px;
 }
+
