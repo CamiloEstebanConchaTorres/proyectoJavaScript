@@ -117,10 +117,15 @@ body {
 
 .Sng_father{
     display: flex;
-    height: 75%;
+    height: 70%;
     overflow-y: scroll;
+    color: white;
 }
 
 .left-section h2{
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+}
+
+#YouMayLike-cards img{
+    width: 20%px;
 }
