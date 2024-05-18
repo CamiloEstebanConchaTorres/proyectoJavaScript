@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
       let res = await fetch(url, {
         method: 'GET',
         headers: {
-          'X-RapidAPI-Key': '27affe6731msh64d1fa5c477d18dp1f41d5jsn3f8bf97a8340',
+          'X-RapidAPI-Key': 'c925cf9059msh104866e154b9d4ap10fd46jsn0b574c03f285',
           'X-RapidAPI-Host': 'spotify23.p.rapidapi.com',
         },
       });
@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
       let res = await fetch(url, {
         method: 'GET',
         headers: {
-          'X-RapidAPI-Key': '27affe6731msh64d1fa5c477d18dp1f41d5jsn3f8bf97a8340',
+          'X-RapidAPI-Key': 'c925cf9059msh104866e154b9d4ap10fd46jsn0b574c03f285',
           'X-RapidAPI-Host': 'spotify23.p.rapidapi.com',
         },
       });
@@ -217,7 +217,7 @@ document.addEventListener('DOMContentLoaded', function() {
       let res = await fetch(url, {
         method: 'GET',
         headers: {
-          'X-RapidAPI-Key': '27affe6731msh64d1fa5c477d18dp1f41d5jsn3f8bf97a8340',
+          'X-RapidAPI-Key': 'c925cf9059msh104866e154b9d4ap10fd46jsn0b574c03f285',
           'X-RapidAPI-Host': 'spotify23.p.rapidapi.com',
         },
       });
@@ -284,4 +284,51 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
   });
+});
+
+/////////////////////// responsive ////////////////////////////////
+document.addEventListener('DOMContentLoaded', function() {
+  const isMobile = window.innerWidth <= 768;
+
+  if (isMobile) {
+      const navButtons = document.querySelectorAll('.nav-button');
+      const sections = document.querySelectorAll('.grid-container > div');
+
+      navButtons.forEach(button => {
+          button.addEventListener('click', (event) => {
+              const target = event.target.getAttribute('data-target');
+              sections.forEach(section => {
+                  if (section.classList.contains(target)) {
+                      section.style.display = 'block';
+                  } else {
+                      section.style.display = 'none';
+                  }
+              });
+          });
+      });
+
+      const albumButton = document.querySelector('[data-target="left-section"]');
+      const songButton = document.querySelector('[data-target="right-section"]');
+      const albumSection = document.querySelector('.left-section');
+      const songSection = document.querySelector('.right-section');
+      const middleSection = document.querySelector('.middle-section');
+
+      albumButton.addEventListener('click', () => {
+          albumSection.style.display = 'block';
+          songSection.style.display = 'none';
+          middleSection.style.display = 'none';
+      });
+
+      songButton.addEventListener('click', () => {
+          songSection.style.display = 'block';
+          albumSection.style.display = 'none';
+          middleSection.style.display = 'none';
+      });
+      const middleButton = document.querySelector('[data-target="middle-section"]');
+      middleButton.addEventListener('click', () => {
+          middleSection.style.display = 'block';
+          albumSection.style.display = 'none';
+          songSection.style.display = 'none';
+      });
+  }
 });

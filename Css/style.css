@@ -136,3 +136,43 @@ body {
     width: 20%px;
 }
 
+.mobile-nav {
+    display: none;
+}
+
+.nav-button {
+    color: white;
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+
+    .mobile-nav {
+        display: block;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 0;
+    }
+
+    .mobile-nav button{
+        background: black;
+        padding: 10px;
+        border: 2px solid orange;
+        border-radius: 100px;
+        cursor: pointer;
+    }
+
+    .grid-container {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr;
+        height: 90vh;
+    }
+}
+
